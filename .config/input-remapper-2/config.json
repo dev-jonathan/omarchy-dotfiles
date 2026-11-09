@@ -1,0 +1,7 @@
+{
+    "version": "2.2.1",
+    "autoload": {
+        "SINOWEALTH 2.4G Wireless Receiver": "Turbo Scroll"
+    },
+    "enable_system_tray": true
+}

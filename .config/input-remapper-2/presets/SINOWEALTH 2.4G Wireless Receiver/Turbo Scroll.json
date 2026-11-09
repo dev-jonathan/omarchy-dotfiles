@@ -1,0 +1,22 @@
+[
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 276,
+                "origin_hash": "42177d9331a29ca54a413d55fbe778d9"
+            },
+            {
+                "type": 2,
+                "code": 1,
+                "origin_hash": "42177d9331a29ca54a413d55fbe778d9"
+            }
+        ],
+        "target_uinput": "mouse",
+        "output_type": 2,
+        "output_code": 8,
+        "deadzone": 0.0,
+        "gain": -12.0,
+        "name": "Hold side button and move vertically to scroll"
+    }
+]

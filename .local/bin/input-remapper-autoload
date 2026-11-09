@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+# Wait for the graphical session and input-remapper service to settle after login.
+sleep 5
+exec /usr/bin/python3 /usr/bin/input-remapper-control --config-dir "$HOME/.config/input-remapper-2" --command autoload

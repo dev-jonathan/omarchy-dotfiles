@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/devjonathan/.local/bin/input-remapper-autoload
+Name=input-remapper-autoload
+Icon=input-remapper
+Comment=Autoload the user's input-remapper presets after login
+Terminal=false
+X-GNOME-Autostart-enabled=true
