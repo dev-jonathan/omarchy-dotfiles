@@ -1,33 +1,33 @@
 # omarchy-dotfiles
 
-Configurações pessoais do Omarchy. Atualmente inclui o preset e o autoload do input-remapper.
+Personal Omarchy configuration. Currently includes the input-remapper preset and session autoload setup.
 
 ## Input Remapper
 
-Configuração validada com `input-remapper-git 2.2.1.r18.gd18d486d-1`, Python 3.14 e kernel `6.18.57-2-lts`.
+Validated with `input-remapper-git 2.2.1.r18.gd18d486d-1`, Python 3.14, and kernel `6.18.57-2-lts`.
 
-- Dispositivo: `SINOWEALTH 2.4G Wireless Receiver`.
+- Device: `SINOWEALTH 2.4G Wireless Receiver`.
 - Preset: `Turbo Scroll`.
-- Mapeamento: manter o botão lateral de código `276` pressionado e mover o mouse verticalmente para rolar.
-- Saída: roda vertical (`REL_WHEEL`, código `8`), com ganho `-12`.
+- Mapping: hold the side button with code `276` and move the mouse vertically to scroll.
+- Output: vertical wheel (`REL_WHEEL`, code `8`), with gain `-12`.
 
-| Arquivo | Função |
+| File | Purpose |
 | --- | --- |
-| `.config/input-remapper-2/config.json` | Associa o dispositivo ao preset para carregamento automático. |
-| `.config/input-remapper-2/presets/SINOWEALTH 2.4G Wireless Receiver/Turbo Scroll.json` | Define a combinação de entrada e a saída de rolagem. |
-| `.local/bin/input-remapper-autoload` | Aguarda 5 segundos e executa o autoload com `/usr/bin/python3`. |
-| `.config/autostart/input-remapper-autoload.desktop` | Executa o script ao iniciar a sessão gráfica. |
+| `.config/input-remapper-2/config.json` | Assigns the device preset for automatic loading. |
+| `.config/input-remapper-2/presets/SINOWEALTH 2.4G Wireless Receiver/Turbo Scroll.json` | Defines the input combination and scroll output. |
+| `.local/bin/input-remapper-autoload` | Waits 5 seconds and runs autoload using `/usr/bin/python3`. |
+| `.config/autostart/input-remapper-autoload.desktop` | Runs the script when the graphical session starts. |
 
-## Restaurar
+## Restore
 
-Instale o pacote e habilite o serviço:
+Install the package and enable the service:
 
 ```bash
 omarchy pkg aur add input-remapper-git
 sudo systemctl enable --now input-remapper.service
 ```
 
-Faça backup das configurações existentes. Na raiz deste repositório, copie os arquivos:
+Back up any existing configuration. From the repository root, copy the files:
 
 ```bash
 mkdir -p "$HOME/.config/autostart"
@@ -36,9 +36,9 @@ install -Dm755 .local/bin/input-remapper-autoload "$HOME/.local/bin/input-remapp
 cp .config/autostart/input-remapper-autoload.desktop "$HOME/.config/autostart/"
 ```
 
-O campo `Exec` do arquivo `.desktop` aponta para `/home/devjonathan/.local/bin/input-remapper-autoload`. Ajuste esse caminho se o diretório pessoal for diferente. Em outro dispositivo, revise o nome do receptor e o `origin_hash` do preset.
+The `.desktop` file's `Exec` field points to `/home/devjonathan/.local/bin/input-remapper-autoload`. Update this path if your home directory differs. For other hardware, review the receiver name and the preset's `origin_hash`.
 
-Carregue a configuração e consulte os logs:
+Load the configuration and inspect the logs:
 
 ```bash
 ~/.local/bin/input-remapper-autoload
@@ -46,10 +46,10 @@ systemctl status input-remapper.service
 journalctl -b -t input-remapper-autoload --no-pager
 ```
 
-O script usa o Python do sistema explicitamente para evitar que ferramentas de gerenciamento de runtimes alterem o interpretador utilizado. O autoload funciona; há uma falha preexistente de importação Python no ícone da bandeja (`input-remapper-tray`) que não é corrigida por estes arquivos.
+The script explicitly uses the system Python to prevent runtime managers from selecting a different interpreter. Autoload works; the tray icon (`input-remapper-tray`) has a preexisting Python import failure that these files do not fix.
 
-## Alterações com agentes
+## Changes with agents
 
-Recomenda-se usar a skill `$omarchy` ao pedir alterações nestas configurações. Na instalação local, as instruções ficam em `/usr/share/omarchy/default/agents/skills/omarchy/SKILL.md`.
+Use the `$omarchy` skill when asking an agent to modify these settings. On the local installation, its instructions are available at `/usr/share/omarchy/default/agents/skills/omarchy/SKILL.md`.
 
-Mantenha as personalizações em `~/.config/` e `~/.local/`. Faça backup antes de aplicar mudanças e não edite os arquivos distribuídos em `/usr/share/omarchy/`.
+Keep customizations in `~/.config/` and `~/.local/`. Back up existing files before applying changes, and do not edit packaged files under `/usr/share/omarchy/`.
