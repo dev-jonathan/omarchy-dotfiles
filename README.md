@@ -1,6 +1,41 @@
 # omarchy-dotfiles
 
-Personal Omarchy configuration. Currently includes the input-remapper preset and session autoload setup.
+Personal Omarchy configuration. Currently includes the US keyboard layout with Brazilian
+accents, the input-remapper preset, and session autoload setup.
+
+## Keyboard
+
+A 75% ANSI US keyboard that also types Portuguese. The layout keeps every US key as printed
+(`[ ] { } ? ; : / \ ' "`) and moves the accents to Right Alt.
+
+| File | Purpose |
+| --- | --- |
+| `.config/xkb/symbols/brus` | Extends `us(altgr-intl)` with a tilde dead key on `` ` `` and `ç` on `c`. |
+| `.config/omarchy/keyboard-layouts` | Selects `brus` / `altgr-intl` for Hyprland. |
+
+| Keys | Result |
+| --- | --- |
+| `RAlt` + `'` + vowel | á é í ó ú |
+| `RAlt` + `` ` `` + vowel | ã õ |
+| `RAlt` + `Shift` + `` ` `` + vowel | à è ì ò ù |
+| `RAlt` + `6` + vowel | â ê î ô û |
+| `RAlt` + `c` | ç |
+| `RAlt` + `Shift` + `c` | Ç |
+| `RAlt` + `Shift` + `'` + u | ü |
+
+`Shift + Caps Lock` remains the compose key. Plain `` ` `` and `~` still type as-is.
+
+Restore by copying both files and reloading Hyprland:
+
+```bash
+cp -a .config/xkb "$HOME/.config/"
+mkdir -p "$HOME/.config/omarchy"
+cp .config/omarchy/keyboard-layouts "$HOME/.config/omarchy/"
+hyprctl reload
+```
+
+`omarchy setup keyboard` only lists layouts from the installer catalog, so running it replaces
+`brus` with a stock layout. Copy `.config/omarchy/keyboard-layouts` back afterwards.
 
 ## Input Remapper
 

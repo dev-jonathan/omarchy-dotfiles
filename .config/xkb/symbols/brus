@@ -1,0 +1,20 @@
+// brus = physical US keyboard with Brazilian accents (AltGr dead keys).
+// Everything unshifted/shifted stays US (so [ ] { } ? ; : / \ are untouched).
+// Suffix accents live on AltGr:
+//   RAlt + '  + vowel  -> á é í ó ú
+//   RAlt + `  + vowel  -> ã õ        (this file)
+//   RAlt + 6  + vowel  -> â ê î ô û
+//   RAlt + c           -> ç          (this file)
+//   RAlt + ,           -> ç
+//   RAlt + Shift + `   + vowel -> à è ì ò ù (this file)
+partial alphanumeric_keys
+xkb_symbols "altgr-intl" {
+  include "us(altgr-intl)"
+  name[Group1] = "Portuguese (Brazil, US physical keys)";
+
+  // Plain ` and ~ stay as typed; AltGr makes them dead keys.
+  key <TLDE> { [ grave, asciitilde, dead_tilde, dead_grave ] };
+
+  // AltGr + c gives ç. Replaces © / ¢, which are not needed here.
+  key <AB03> { [ c, C, ccedilla, Ccedilla ] };
+};
